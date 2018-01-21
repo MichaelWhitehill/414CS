@@ -1,3 +1,3 @@
-public class IllegalPositionException{
-  
+public class IllegalPositionException extends Exception{
+
 }

@@ -1,3 +1,3 @@
-public class IllegalMoveException{
+public class IllegalMoveException extends Exception{
 
 }

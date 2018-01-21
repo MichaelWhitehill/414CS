@@ -1,4 +1,4 @@
-import IllegalPositionException;
+// import IllegalPositionException;
 
 public class ChessBoard{
   public static final int BOARD_SIZE = 8;
@@ -35,13 +35,13 @@ public class ChessBoard{
   * Returns boolean: true for successfull placement. False for unsucssful
   **/
   public boolean placePiece(ChessPiece piece, String position){
-    return False;
+    return false;
   }
 
   /**
   * Prints formatted chess board in an all fancy font. ♙
   **/
   public String toString(){
-    return "Unimplimented chessBoard.toString"
+    return "Unimplimented chessBoard.toString";
   }
 }
