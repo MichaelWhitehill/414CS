@@ -27,13 +27,21 @@ public class ChessBoard{
   }
 
   /**
-  * Attempts to place a piece at given position. Returns fals if unsucssful.
+  * Attempts to place a piece at given position. Returns false if unsuccessful.
   * @param piece: Chess piece to be placed
-  * @param position: Position piece should be placed at . Expected to be in the for of letterNumber ie: "a1" "b2" "e5"
-  * @return true for successfull placement. False for unsucssful
+  * @param position: Position piece should be placed at . Expected to be in the form of letterNumber ie: "a1" "b2" "e5"
+  * @return true for successful placement. False for unsuccessful
   */
   public boolean placePiece(ChessPiece piece, String position){
     return false;
+  }
+
+  /**
+   * Removes the piece at a given position.
+   * @param position: Expected to be in the form of letterNumber ie: "a1" "b2" "e5"
+   */
+  public void removePiece(String position){
+    return;
   }
 
   /**
@@ -48,7 +56,7 @@ public class ChessBoard{
   * @param  position
   * @return  int[]: int[] containing coordinates in java style
   */
-  public int[] toJavaCoordinate(String position){
+  public static int[] toJavaCoordinate(String position){
     return new int[2];
   }
   public static void main(String[] args){
