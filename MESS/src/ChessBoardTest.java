@@ -1,5 +1,5 @@
 import org.junit.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
 
 public class ChessBoardTest{
 
@@ -12,11 +12,15 @@ public class ChessBoardTest{
     String whitePawn="a2"; String blackPawn="e7"; String blackKnight="h8"; String noPiece="b5";
 
     //Expected values
-    String expecedWhitePawn="u2659"; String expectedBlackPawn="u265F"; String expectedBlackKnight="u265E";
+    String expectedWhitePawn="u2659"; String expectedBlackPawn="u265F"; String expectedBlackKnight="u265E";
     //Create and initialize ChessBoard
     ChessBoard board = new ChessBoard();
     board.initialize();
-    assertEquals(expecedWhitePawn, board.getPiece(whitePawn));
+    try {
+      assertEquals(expectedWhitePawn, board.getPiece(whitePawn));
+    } catch (IllegalPositionException e) {
+      e.printStackTrace();
+    }
   }
 
   public static void main(String args[]) {
