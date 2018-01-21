@@ -1,5 +1,3 @@
-// import IllegalPositionException;
-
 public class ChessBoard{
   public static final int BOARD_SIZE = 8;
   private ChessPiece[][] board;
@@ -44,4 +42,17 @@ public class ChessBoard{
   public String toString(){
     return "Unimplimented chessBoard.toString";
   }
+
+  /**
+  * Converts a chess style coordinate ie: "a1" "b2" "e5" to array coordinate ie: [0,0] [1,1] [4,4]
+  * String position
+  * returns int[]: int[] containing coordinates in java style
+  **/
+  public int[] toJavaCoordinate(String position){
+    return new int[2];
+  }
+  public static void main(String[] args){
+      System.out.println("Hello, world")
+  }
+
 }
