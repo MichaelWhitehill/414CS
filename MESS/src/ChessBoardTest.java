@@ -171,6 +171,38 @@ public class ChessBoardTest {
             board.removePiece("e3");
         }
     }
+
+    @Test
+    public void testMovePiece(){
+        /*
+        Only tests moving with empty and out of bounds pieces
+        Move logic is implemented in specific pieces and tested by their test classes
+         */
+        ChessBoard board = new ChessBoard();
+        // empty start to empty to
+        try {
+            board.move("a1", "b3");
+        } catch (IllegalMoveException ignored) {
+            fail();
+        }
+        // out of bounds start to empty start
+        try{
+            board.move("e9", "a1");
+            fail();
+        } catch (IllegalMoveException ignored) {
+
+        }
+         // empty space to occupied space
+        board.initialize();
+        String emptySpace = "c4";
+        String occupiedSpace = "e1";
+        try {
+            board.move(emptySpace, occupiedSpace);
+            fail();
+        } catch (IllegalMoveException ignored) {
+
+        }
+    }
     
     @Test
     public void toJavaCoordinateTest(){
@@ -191,7 +223,7 @@ public class ChessBoardTest {
 
         // negative numbers
         try{
-            ChessBoard.toJavaCoordinate("c-3")
+            ChessBoard.toJavaCoordinate("c-3");
             fail();
         } catch (IndexOutOfBoundsException ignored){
 
