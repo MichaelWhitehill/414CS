@@ -1,4 +1,5 @@
 import org.junit.*;
+
 import static org.junit.Assert.*;
 
 public class ChessBoardTest {
@@ -74,7 +75,7 @@ public class ChessBoardTest {
                 e.printStackTrace();
             }
         }
-        // Tests that a pieces in soon-to-be occupied positions on board are changed after init is called
+        // Tests that a pieces in soon-to-be occupied positons on board are changed after init is called
         {
             String occupiedLocation = "a1";
             ChessBoard board = new ChessBoard();
@@ -181,8 +182,8 @@ public class ChessBoardTest {
 
                 char capLetter = (char) (65 + a); // 65 is 'A'
                 char lowLetter = (char) (97 + a); //97 is 'a'
-                String capLoc = ""+capLetter+i;
-                String lowLoc = ""+lowLetter+i;
+                String capLoc = ""+capLetter+","+i;
+                String lowLoc = ""+lowLetter+","+i;
 
                 assertEquals(expected, ChessBoard.toJavaCoordinate(capLoc));
                 assertEquals(expected, ChessBoard.toJavaCoordinate(lowLoc));
@@ -191,7 +192,7 @@ public class ChessBoardTest {
 
         // negative numbers
         try{
-            ChessBoard.toJavaCoordinate("c-3")
+            ChessBoard.toJavaCoordinate("c,-3");
             fail();
         } catch (IndexOutOfBoundsException ignored){
 
