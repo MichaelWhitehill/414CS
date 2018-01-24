@@ -226,7 +226,26 @@ public class ChessBoardTest {
             ChessBoard.toJavaCoordinate("c-3");
             fail();
         } catch (IndexOutOfBoundsException ignored){
-
         }
+    }
+
+    @Test
+    public void toChessCoordinateTest(){
+        String expected1 = "a1"; int r1 = 0; int c1 = 0;
+        String expected2 = "a8"; int r2 = 8; int c2 = 0;
+        String expected3 = "d2"; int r3 = 3; int c3 = 3;
+
+        String fullTest1 = "h8";
+        String fullTest2 = "f5";
+
+        assertEquals(expected1, ChessBoard.toChessCoordinate(r1, c1));
+        assertEquals(expected2, ChessBoard.toChessCoordinate(r2, c2));
+        assertEquals(expected3, ChessBoard.toChessCoordinate(r3, c3));
+
+        assertEquals(fullTest1, ChessBoard.toChessCoordinate(ChessBoard.toJavaCoordinate(fullTest1)[0],ChessBoard.toJavaCoordinate(fullTest1)[1]));
+        assertEquals(fullTest2, ChessBoard.toChessCoordinate(ChessBoard.toJavaCoordinate(fullTest2)[0],ChessBoard.toJavaCoordinate(fullTest2)[1]));
+
+
+
     }
 }

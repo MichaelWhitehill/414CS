@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 public class ChessBoard {
     public static final int BOARD_SIZE = 8;
     private ChessPiece[][] board;
@@ -5,7 +7,7 @@ public class ChessBoard {
 
     /**
      * No-argument constructor.
-     * Initializes a the ChssPiece array (board) to the BOARD_SIZE variable
+     * Initializes a the ChessPiece array (board) to the BOARD_SIZE variable
      */
     public ChessBoard() {
         board = new ChessPiece[BOARD_SIZE][BOARD_SIZE];
@@ -68,12 +70,17 @@ public class ChessBoard {
     /**
      * Converts a chess style coordinate ie: "a1" "b2" "e5" to array coordinate ie: [0,0] [1,1] [4,4]
      *
-     * @param position
+     * @param position expected in for "a3", "b5"
      * @return int[]: int[] containing coordinates in java style
      */
     public static int[] toJavaCoordinate(String position) {
         return new int[2];
     }
+
+    public static String toChessCoordinate(int row, int colounm){
+        return "";
+    }
+
 
     public static void main(String[] args) {
         System.out.println("Hello, world");
