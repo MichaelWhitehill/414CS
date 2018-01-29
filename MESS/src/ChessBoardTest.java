@@ -1,4 +1,7 @@
 import org.junit.*;
+
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class ChessBoardTest {
@@ -11,11 +14,11 @@ public class ChessBoardTest {
         // Create dummy board and test chess pieces
         ChessBoard dummyBoard = new ChessBoard();
         Pawn expectedWhitePawn = new Pawn(dummyBoard,1, 2, ChessPiece.Color.WHITE);
-        Knight expectedBlackKnight = new Knight(dummyBoard,7, 7, ChessPiece.Color.BLACK);
+        Rook expectedBlackRook = new Rook(dummyBoard,7, 7, ChessPiece.Color.BLACK);
 
         // Test Locations
         String whitePawn = "c2";
-        String blackKnight = "h8";
+        String blackRook = "h8";
         String noPiece = "b6";
         String outOfBounds = "b9";
 
@@ -33,7 +36,8 @@ public class ChessBoardTest {
 
         // Corner of board knight case
         try {
-            assertEquals(expectedBlackKnight, board.getPiece(blackKnight));
+            expectedBlackRook.equals(board.getPiece(blackRook));
+            assertEquals(expectedBlackRook, board.getPiece(blackRook));
         } catch (IllegalPositionException e) {
             fail();
             e.printStackTrace();
@@ -70,19 +74,6 @@ public class ChessBoardTest {
             board.initialize();
             try {
                 assertEquals(carryOverPawn, board.getPiece(carryOverPawnPosition));
-            } catch (IllegalPositionException e) {
-                e.printStackTrace();
-            }
-        }
-        // Tests that a pieces in soon-to-be occupied positions on board are changed after init is called
-        {
-            String occupiedLocation = "a1";
-            ChessBoard board = new ChessBoard();
-            King occupiedKing = new King(board, 3, 1, ChessPiece.Color.BLACK);
-            board.placePiece(occupiedKing, occupiedLocation);
-            board.initialize();
-            try {
-                assertNotEquals(occupiedKing, board.getPiece(occupiedLocation));
             } catch (IllegalPositionException e) {
                 e.printStackTrace();
             }
@@ -152,18 +143,6 @@ public class ChessBoardTest {
             board.removePiece(position);
             assertTrue(board.placePiece(pawn, position));
         }
-
-        // Make sure we don't crash when removing from outside the board
-        {
-            ChessBoard board = new ChessBoard();
-            board.initialize();
-            try{
-                board.removePiece("f32");
-            } catch (IndexOutOfBoundsException e){
-                fail();
-            }
-        }
-        
         // Make sure we're successful removing nothing
         
         {
@@ -206,20 +185,16 @@ public class ChessBoardTest {
     
     @Test
     public void toJavaCoordinateTest(){
-        // brute force test
-        for (int a = 0; a < 26; a++) {
-            for (int i = 0; i < 10; i++) {
-                int [] expected = {a,i};
+        String input1 = "a1"; int[] expected1 = {0,0};
+        String input2 = "b5"; int[] expected2 = {4,1};
+        String input3 = "h8"; int[] expected3 = {7,7};
+        String input4 = "e2"; int[] expected4 = {1,4};
 
-                char capLetter = (char) (65 + a); // 65 is 'A'
-                char lowLetter = (char) (97 + a); //97 is 'a'
-                String capLoc = ""+capLetter+i;
-                String lowLoc = ""+lowLetter+i;
+        assertTrue(Arrays.equals(ChessBoard.toJavaCoordinate(input1), expected1));
+        assertTrue(Arrays.equals(ChessBoard.toJavaCoordinate(input2), expected2));
+        assertTrue(Arrays.equals(ChessBoard.toJavaCoordinate(input3), expected3));
+        assertTrue(Arrays.equals(ChessBoard.toJavaCoordinate(input4), expected4));
 
-                assertEquals(expected, ChessBoard.toJavaCoordinate(capLoc));
-                assertEquals(expected, ChessBoard.toJavaCoordinate(lowLoc));
-            }
-        }
 
         // negative numbers
         try{
@@ -232,8 +207,8 @@ public class ChessBoardTest {
     @Test
     public void toChessCoordinateTest(){
         String expected1 = "a1"; int r1 = 0; int c1 = 0;
-        String expected2 = "a8"; int r2 = 8; int c2 = 0;
-        String expected3 = "d2"; int r3 = 3; int c3 = 3;
+        String expected2 = "a8"; int r2 = 7; int c2 = 0;
+        String expected3 = "d4"; int r3 = 3; int c3 = 3;
 
         String fullTest1 = "h8";
         String fullTest2 = "f5";

@@ -19,4 +19,15 @@ public class King extends ChessPiece{
     public ArrayList<String> legalMoves() {
         return null;
     }
+
+    public boolean equals(Object other){
+        if (!(other instanceof King))
+            return false;
+
+        King otherPiece = (King) other;
+        if (otherPiece.row == row && otherPiece.column == column && otherPiece.color == color)
+            return true;
+        else
+            return false;
+    }
 }
