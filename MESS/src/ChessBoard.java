@@ -1,5 +1,3 @@
-import org.junit.Test;
-
 public class ChessBoard {
     public static final int BOARD_SIZE = 8;
     private ChessPiece[][] board;
@@ -52,10 +50,10 @@ public class ChessBoard {
     /**
      * Moves piece from the starting position to the to position
      * @param fromPosition Position of piece
-     * @param toPositon Position for piece to be moved to
+     * @param toPosition Position for piece to be moved to
      * @throws IllegalMoveException
      */
-    public void move(String fromPosition, String toPositon) throws IllegalMoveException {
+    public void move(String fromPosition, String toPosition) throws IllegalMoveException {
 
     }
 
@@ -73,11 +71,11 @@ public class ChessBoard {
      * @param position expected in for "a3", "b5"
      * @return int[]: int[] containing coordinates in java style
      */
-    public static int[] toJavaCoordinate(String position) {
+    protected static int[] toJavaCoordinate(String position) {
         return new int[2];
     }
 
-    public static String toChessCoordinate(int row, int colounm){
+    protected static String toChessCoordinate(int row, int colounm){
         return "";
     }
 
