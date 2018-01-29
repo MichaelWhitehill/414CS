@@ -19,4 +19,15 @@ public class Bishop extends ChessPiece {
     public ArrayList<String> legalMoves() {
         return null;
     }
+
+    public boolean equals(Object other){
+        if (!(other instanceof Bishop))
+            return false;
+
+        Bishop otherPiece = (Bishop) other;
+        if (otherPiece.row == row && otherPiece.column == column && otherPiece.color == color)
+            return true;
+        else
+            return false;
+    }
 }
