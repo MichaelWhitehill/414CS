@@ -8,6 +8,11 @@ public class King extends ChessPiece{
         blackCharacter = "\u265A";
     }
 
+    @Override
+    public void setPosition(String position) throws IllegalPositionException {
+
+    }
+
 
     @Override
     public ArrayList<String> legalMoves() {

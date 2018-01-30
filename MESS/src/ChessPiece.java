@@ -42,9 +42,7 @@ public abstract class ChessPiece {
      * @param position expected in chess format ie: "a5", "b6"
      * @throws IllegalPositionException
      */
-    public void setPosition(String position) throws IllegalPositionException{
-
-    }
+    abstract public void setPosition(String position) throws IllegalPositionException;
 
     /**
      * Sets the piece position
@@ -73,4 +71,8 @@ public abstract class ChessPiece {
      * @return List of all potential legal moves
      */
     abstract public ArrayList<String> legalMoves();
+
+    protected static boolean isInbounds (int r, int c){
+        return (r>=0 && r<8 && c>=0 && c<8);
+    }
 }

@@ -58,8 +58,10 @@ public class ChessBoard {
         // place the piece
         else {
             this.board[positionAsArray[0]][positionAsArray[1]] = piece;
-            piece.row = positionAsArray[0];
-            piece.column = positionAsArray[1];
+            if (piece != null){
+                piece.row = positionAsArray[0];
+                piece.column = positionAsArray[1];
+            }
             return true;
         }
     }

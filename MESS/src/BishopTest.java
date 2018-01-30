@@ -17,10 +17,13 @@ public class BishopTest {
             try {
                 System.out.println("====----Rook move test----====");
                 b.setPosition(testPos1);
+                System.out.println(board);
                 System.out.println("Passed test pos 1");
                 b.setPosition(testPos2);
+                System.out.println(board);
                 System.out.println("Passed test pos 2");
                 b.setPosition(testPos3);
+                System.out.println(board);
                 System.out.println("Passed test pos 3");
                 b.setPosition(testPos4);
                 System.out.println("Passed test pos 4");
@@ -43,12 +46,20 @@ public class BishopTest {
             try {
                 System.out.println("====----Rook zig-zag test---====");
                 b.setPosition(testPos1);
+                assertEquals(board.getPiece(startPos), null);
+                assertEquals(board.getPiece(testPos1), b);
                 System.out.println("Passed test pos 1");
                 b.setPosition(testPos2);
+                assertEquals(board.getPiece(testPos1), null);
+                assertEquals(board.getPiece(testPos2), b);
                 System.out.println("Passed test pos 2");
                 b.setPosition(testPos3);
+                assertEquals(board.getPiece(testPos2), null);
+                assertEquals(board.getPiece(testPos3), b);
                 System.out.println("Passed test pos 3");
                 b.setPosition(testPos4);
+                assertEquals(board.getPiece(testPos3), null);
+                assertEquals(board.getPiece(testPos4), b);
                 System.out.println("Passed test pos 4");
             } catch (IllegalPositionException ignored) {
                 fail();
@@ -61,8 +72,8 @@ public class BishopTest {
             board.initialize();
             Bishop b = new Bishop(board, ChessPiece.Color.BLACK);
             board.placePiece(b, startPos);
-            String adjacentPosition1 = "e6";
-            String adjacentPosition2 = "f3";
+            String adjacentPosition1 = "g6";
+            String adjacentPosition2 = "d3";
             try {
                 System.out.println("====----Rook adjacent move test----====");
                 b.setPosition(adjacentPosition1);
