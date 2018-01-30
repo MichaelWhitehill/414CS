@@ -8,22 +8,6 @@ public class Bishop extends ChessPiece {
         blackCharacter = "\u265D";
     }
 
-    @Override
-    public void setPosition(String position) throws IllegalPositionException {
-        if (!(legalMoves().contains(position)))
-            throw new IllegalPositionException();
-        // save our state because the board has to null out out properties in remove
-        ChessBoard board = this.board;
-
-        // null out old destination
-        board.removePiece(ChessBoard.toChessCoordinate(row,column));
-        this.board = board;
-        // remove piece where we're going
-        board.removePiece(position);
-        // make a new piece where we want
-        board.placePiece(this, position);
-    }
-
 
     @Override
     public ArrayList<String> legalMoves() {
@@ -96,9 +80,6 @@ public class Bishop extends ChessPiece {
             return false;
 
         Bishop otherPiece = (Bishop) other;
-        if (otherPiece.row == row && otherPiece.column == column && otherPiece.color == color)
-            return true;
-        else
-            return false;
+        return otherPiece.row == row && otherPiece.column == column && otherPiece.color == color;
     }
 }

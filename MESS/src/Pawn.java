@@ -9,11 +9,6 @@ public class Pawn extends ChessPiece {
     }
 
     @Override
-    public void setPosition(String position) throws IllegalPositionException {
-
-    }
-
-    @Override
     public ArrayList<String> legalMoves() {
         return null;
     }

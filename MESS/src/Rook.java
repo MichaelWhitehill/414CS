@@ -9,11 +9,6 @@ public class Rook extends ChessPiece{
         blackCharacter = "\u265C";
     }
 
-    @Override
-    public void setPosition(String position) throws IllegalPositionException {
-
-    }
-
 
     @Override
     public ArrayList<String> legalMoves() {
