@@ -4,16 +4,10 @@ public class Bishop extends ChessPiece {
 
     public Bishop(ChessBoard board, ChessPiece.Color color) {
         super(board, color);
+        whiteCharacter = "\u2657";
+        blackCharacter = "\u265D";
     }
 
-    public Bishop(ChessBoard board, int row, int column, ChessPiece.Color color) {
-        super(board, row, column, color);
-    }
-
-    @Override
-    public String toString() {
-        return null;
-    }
 
     @Override
     public ArrayList<String> legalMoves() {

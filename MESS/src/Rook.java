@@ -5,16 +5,10 @@ public class Rook extends ChessPiece{
 
     public Rook(ChessBoard board, Color color) {
         super(board, color);
+        whiteCharacter = "\u2656";
+        blackCharacter = "\u265C";
     }
 
-    public Rook(ChessBoard board, int row, int column, Color color) {
-        super(board, row, column, color);
-    }
-
-    @Override
-    public String toString() {
-        return null;
-    }
 
     @Override
     public ArrayList<String> legalMoves() {
