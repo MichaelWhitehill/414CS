@@ -49,13 +49,13 @@ public class PawnTest{
 
         // Try moving one square from start
         try {
-            String pawnAtStart = "c2";
-            String moveUp1 = "c3";
+            String pawnAtStart = "a2";
+            String moveUp1 = "a3";
             ChessPiece pawnAsPiece = board.getPiece(pawnAtStart);
             pawnAsPiece.setPosition(moveUp1);
 
-            String pawnAtStart2 = "a7";
-            String moveDown1 = "a6";
+            String pawnAtStart2 = "h7";
+            String moveDown1 = "h6";
             // We're done with the first pawn, so we'll re-use the variable
             pawnAsPiece = board.getPiece(pawnAtStart2);
             pawnAsPiece.setPosition(moveDown1);
@@ -135,7 +135,7 @@ public class PawnTest{
             String start = "d3";
             Pawn blackPawn = new Pawn(board, ChessPiece.Color.BLACK);
             board.placePiece(blackPawn, start);
-            String backwards = "d2";
+            String backwards = "d4";
             try {
                 blackPawn.setPosition(backwards);
                 fail();
@@ -145,8 +145,8 @@ public class PawnTest{
 
         // Try capturing friend
         {
-            String start = "d3";
-            String friendStart = "e4";
+            String start = "e3";
+            String friendStart = "f4";
             Pawn blackPawn = new Pawn(board, ChessPiece.Color.BLACK);
             Pawn friend = new Pawn(board, ChessPiece.Color.BLACK);
             board.placePiece(blackPawn, start);
