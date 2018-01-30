@@ -16,10 +16,16 @@ public class RookTest{
             String vertical2 = "h1";
             String vertical3 = "h4";
             // Perform moves
-            r.setPosition(startPos);
+            board.placePiece(r, startPos);
             r.setPosition(vertical1);
+            assertEquals(board.getPiece(startPos), null);
+            assertEquals(board.getPiece(vertical1), r);
             r.setPosition(vertical2);
+            assertEquals(board.getPiece(vertical1), null);
+            assertEquals(board.getPiece(vertical2), r);
             r.setPosition(vertical3);
+            assertEquals(board.getPiece(vertical2), null);
+            assertEquals(board.getPiece(vertical3), r);
 
             // test Horizontal
             String horizontal1 = "e4";
@@ -27,8 +33,14 @@ public class RookTest{
             String horizontal3 = "g4";
             // Perform Moves
             r.setPosition(horizontal1);
+            assertEquals(board.getPiece(vertical3), null);
+            assertEquals(board.getPiece(horizontal1), r);
             r.setPosition(horizontal2);
+            assertEquals(board.getPiece(horizontal1), null);
+            assertEquals(board.getPiece(horizontal2), r);
             r.setPosition(horizontal3);
+            assertEquals(board.getPiece(horizontal2), null);
+            assertEquals(board.getPiece(horizontal3), r);
         } catch (IllegalPositionException ignored) {
             fail();
         }
@@ -70,25 +82,19 @@ public class RookTest{
         ChessPiece rookAsPiece = null;
         try {
             rookAsPiece = board.getPiece(rookStartingPosition);
-            board.removePiece(stupidPawnInTheWay);
         } catch (IllegalPositionException e) {
-            e.printStackTrace();
+            fail();
         }
         assert rookAsPiece != null;
         try {
             rookAsPiece.setPosition(diagonalFail);
+            fail();
+        } catch (IllegalPositionException ignored) {}
+
+        try {
             rookAsPiece.setPosition(stupidPawnInTheWay);
-            try {
-                board.removePiece(stupidPawnInTheWay);
-                rookAsPiece.setPosition(stupidPawnInTheWay);
-            } catch (IllegalPositionException e){
-                e.printStackTrace();
-            }
-            // Should fail for different reason now
-            rookAsPiece.setPosition(diagonalFail);
-        } catch (IllegalPositionException e) {
-            e.printStackTrace();
-        }
+            fail();
+        } catch (IllegalPositionException ignored) {}
 
     }
 
