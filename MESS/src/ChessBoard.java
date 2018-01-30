@@ -121,9 +121,19 @@ public class ChessBoard {
 
     /**
      * @return formatted chess board in an all fancy font. ♙
-     */
-    public String toString() {
-        return "Unimplimented chessBoard.toString";
+    */
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        for (int i = BOARD_SIZE-1; i>=0; i--){
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                if (board[i][j] == null)
+                    s.append(" ");
+                else
+                    s.append(board[i][j]);
+            }
+            s.append("\n");
+        }
+        return  s.toString();
     }
 
 
@@ -177,13 +187,13 @@ public class ChessBoard {
         // place pieces
         placePiece(new Rook(this, color), toChessCoordinate(row, 0));
         placePiece(new Knight(this, color), toChessCoordinate(row,1));
-        placePiece(new Rook(this, color), toChessCoordinate(row,3));
-        placePiece(new Queen(this, color), toChessCoordinate(row, 4));
-        placePiece(new King(this, color), toChessCoordinate(row,5));
+        placePiece(new Bishop(this, color), toChessCoordinate(row,2));
+        placePiece(new Queen(this, color), toChessCoordinate(row, 3));
+        placePiece(new King(this, color), toChessCoordinate(row,4));
 
         placePiece(new Rook(this, color), toChessCoordinate(row,7));
         placePiece(new Knight(this, color), toChessCoordinate(row,6));
-        placePiece(new Rook(this, color), toChessCoordinate(row,5));
+        placePiece(new Bishop(this, color), toChessCoordinate(row,5));
 
         // place pawns
         for (int i = 0; i < 8; i++) {
@@ -193,5 +203,12 @@ public class ChessBoard {
 
     private static boolean checkBadCoordinates(int[] coordinates){
         return coordinates[0] < 0 || coordinates[0] > BOARD_SIZE-1 || coordinates[1] < 0 || coordinates[1] > BOARD_SIZE-1;
+    }
+
+
+    public static void main(String[] args) {
+        ChessBoard board =  new ChessBoard();
+        board.initialize();
+        System.out.println(board);
     }
 }

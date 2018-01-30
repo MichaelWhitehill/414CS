@@ -7,6 +7,9 @@ public abstract class ChessPiece {
     protected int row;
     protected int column;
     protected Color color;
+    protected String whiteCharacter = "unimplemented toString";
+    protected String blackCharacter = "unimplemented toString";
+
 
     /**
      *
@@ -16,20 +19,6 @@ public abstract class ChessPiece {
     public ChessPiece(ChessBoard board, Color color){
         this.board = board;
         this.color=color;
-    }
-
-    /**
-     * This constructor should only be used for testing
-     * @param board
-     * @param row
-     * @param column
-     * @param color
-     */
-    public ChessPiece(ChessBoard board, int row, int column, Color color) {
-        this.board = board;
-        this.row = row;
-        this.column = column;
-        this.color = color;
     }
 
     /**
@@ -71,7 +60,12 @@ public abstract class ChessPiece {
      *
      * @return Fancy unicode to string
      */
-    abstract public String toString();
+    public String toString(){
+        if (color == Color.BLACK)
+            return blackCharacter;
+        else
+            return whiteCharacter;
+    }
 
 
     /**

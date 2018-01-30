@@ -13,8 +13,10 @@ public class ChessBoardTest {
     public void basicInitTest() {
         // Create dummy board and test chess pieces
         ChessBoard dummyBoard = new ChessBoard();
-        Pawn expectedWhitePawn = new Pawn(dummyBoard,1, 2, ChessPiece.Color.WHITE);
-        Rook expectedBlackRook = new Rook(dummyBoard,7, 7, ChessPiece.Color.BLACK);
+        Pawn expectedWhitePawn = new Pawn(dummyBoard, ChessPiece.Color.WHITE);
+        expectedWhitePawn.row = 1; expectedWhitePawn.column = 2;
+        Rook expectedBlackRook = new Rook(dummyBoard, ChessPiece.Color.BLACK);
+        expectedBlackRook.row = 7; expectedBlackRook.column = 7;
 
         // Test Locations
         String whitePawn = "c2";
@@ -69,7 +71,7 @@ public class ChessBoardTest {
         {
             String carryOverPawnPosition = "b4";
             ChessBoard board = new ChessBoard();
-            Pawn carryOverPawn = new Pawn(board, 3, 1, ChessPiece.Color.BLACK);
+            Pawn carryOverPawn = new Pawn(board, ChessPiece.Color.BLACK);
             assertTrue(board.placePiece(carryOverPawn, carryOverPawnPosition));
             board.initialize();
             try {
@@ -92,7 +94,8 @@ public class ChessBoardTest {
             board.initialize();
             Bishop bishopToPlace = new Bishop(board, ChessPiece.Color.BLACK);
             assertTrue(board.placePiece(bishopToPlace, position));
-            Bishop bishopToCompare = new Bishop(dummyBoard, 3, 2, ChessPiece.Color.BLACK);
+            Bishop bishopToCompare = new Bishop(dummyBoard, ChessPiece.Color.BLACK);
+            bishopToCompare.row = 3; bishopToCompare.column = 2;
             try {
                 assertEquals(bishopToCompare, board.getPiece(position));
             } catch (IllegalPositionException e) {
@@ -117,10 +120,10 @@ public class ChessBoardTest {
             board.initialize();
 
             // rook will exist on the board first, then the pawn will be placed on top of it
-            Rook rook = new Rook(board, 2, 5, ChessPiece.Color.WHITE);
+            Rook rook = new Rook(board, ChessPiece.Color.WHITE);
             assertTrue(board.placePiece(rook, position));
             String pawnTempPosition = "e3";
-            Pawn pawn = new Pawn(board, 2, 4, ChessPiece.Color.BLACK);
+            Pawn pawn = new Pawn(board, ChessPiece.Color.BLACK);
             assertTrue(board.placePiece(pawn, pawnTempPosition));
             assertFalse(board.placePiece(pawn, position));
         }
@@ -135,10 +138,10 @@ public class ChessBoardTest {
             board.initialize();
 
             // rook will exist on the board first, then the pawn will be placed on top of it
-            Rook rook = new Rook(board, 2, 5, ChessPiece.Color.WHITE);
+            Rook rook = new Rook(board, ChessPiece.Color.WHITE);
             assertTrue(board.placePiece(rook, position));
             String pawnTempPosition = "e3";
-            Pawn pawn = new Pawn(board, 2, 4, ChessPiece.Color.BLACK);
+            Pawn pawn = new Pawn(board, ChessPiece.Color.BLACK);
             assertTrue(board.placePiece(pawn, pawnTempPosition));
             board.removePiece(position);
             assertTrue(board.placePiece(pawn, position));
