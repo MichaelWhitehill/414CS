@@ -40,20 +40,21 @@ public abstract class ChessPiece {
     /**
      * Sets the pieces position
      * @param position expected in chess format ie: "a5", "b6"
-     * @throws IllegalPositionException
+     * @throws IllegalPositionException Throws exception if new position is not legal
      */
-    public void setPosition(String position) throws IllegalPositionException{
+    public void setPosition(String position) throws IllegalPositionException {
+        if (!(legalMoves().contains(position)))
+            throw new IllegalPositionException();
+        // save our state because the board has to null out out properties in remove
+        ChessBoard board = this.board;
 
-    }
-
-    /**
-     * Sets the piece position
-     * @param row 0-7
-     * @param column 0-7
-     * @throws IllegalPositionException
-     */
-    public void setPosition(int row, int column) throws IllegalPositionException{
-
+        // null out old destination
+        board.removePiece(ChessBoard.toChessCoordinate(row,column));
+        this.board = board;
+        // remove piece where we're going
+        board.removePiece(position);
+        // make a new piece where we want
+        board.placePiece(this, position);
     }
 
     /**
@@ -73,4 +74,8 @@ public abstract class ChessPiece {
      * @return List of all potential legal moves
      */
     abstract public ArrayList<String> legalMoves();
+
+    protected static boolean isInbounds (int r, int c){
+        return (r>=0 && r<8 && c>=0 && c<8);
+    }
 }
