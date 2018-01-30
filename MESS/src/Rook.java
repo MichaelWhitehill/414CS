@@ -12,8 +12,43 @@ public class Rook extends ChessPiece{
 
     @Override
     public ArrayList<String> legalMoves() {
-        return null;
+        ArrayList<String> moves = new ArrayList<>();
+        int r = row + 1;
+        int c = column;
+
+        // build down
+        while (isInbounds(r, c)) {
+            if (addMove(r, c, moves))
+                break;
+            r++;
+        }
+
+        // build up
+        r = row - 1;
+        while (isInbounds(r, c)){
+            if (addMove(r, c, moves))
+                break;
+            r--;
+        }
+        // build left
+        r = row;
+        c = column - 1;
+        while (isInbounds(r, c)){
+            if (addMove(r, c, moves))
+                break;
+            c--;
+        }
+
+        // build right
+        c = column + 1;
+        while (isInbounds(r, c)){
+            if (addMove(r, c, moves))
+                break;
+            c++;
+        }
+        return moves;
     }
+
 
     public boolean equals(Object other){
         if (!(other instanceof Rook))
@@ -25,4 +60,5 @@ public class Rook extends ChessPiece{
         else
             return false;
     }
+
 }

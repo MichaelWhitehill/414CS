@@ -55,26 +55,6 @@ public class Bishop extends ChessPiece {
         return moves;
     }
 
-    private boolean addMove(int r, int c, ArrayList<String> moves){
-        try{
-            if (board.getPiece(ChessBoard.toChessCoordinate(r,c)) == null){
-                moves.add(ChessBoard.toChessCoordinate(r,c));
-            } else if (board.getPiece(ChessBoard.toChessCoordinate(r,c)).color != this.color){
-                moves.add(ChessBoard.toChessCoordinate(r,c));
-                return true;
-            } else if (board.getPiece(ChessBoard.toChessCoordinate(r,c)).color == this.color){
-                return true;
-            }
-            else {
-                System.err.println("logic error in bishop legal moves");
-                return true;
-            }
-        } catch (IllegalPositionException e){
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public boolean equals(Object other){
         if (!(other instanceof Bishop))
             return false;
