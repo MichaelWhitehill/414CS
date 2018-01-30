@@ -10,6 +10,6 @@ public class Knight extends  ChessPiece{
 
     @Override
     public ArrayList<String> legalMoves() {
-        return null;
+        return new ArrayList<String>();
     }
 }
