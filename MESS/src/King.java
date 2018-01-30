@@ -11,7 +11,32 @@ public class King extends ChessPiece{
 
     @Override
     public ArrayList<String> legalMoves() {
-        return null;
+        ArrayList<String> moves = new ArrayList<>();
+        if (isInbounds(row+1, column+1))
+            addMove(row+1, column+1, moves);
+
+        if (isInbounds(row+1, column))
+            addMove(row+1, column, moves);
+
+        if (isInbounds(row+1, column-1))
+            addMove(row+1, column-1, moves);
+
+        if (isInbounds(row, column-1))
+            addMove(row, column-1, moves);
+
+        if (isInbounds(row-1, column-1))
+            addMove(row-1, column-1, moves);
+
+        if (isInbounds(row-1, column))
+            addMove(row-1, column, moves);
+
+        if (isInbounds(row-1, column+1))
+            addMove(row-1, column+1, moves);
+
+        if (isInbounds(row, column+1))
+            addMove(row, column+1, moves);
+
+        return moves;
     }
 
     public boolean equals(Object other){

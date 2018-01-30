@@ -94,7 +94,7 @@ public class KingTest{
         King kingInMiddle = new King(board, ChessPiece.Color.BLACK);
         board.placePiece(kingInMiddle, middleStart);
 
-        assertEquals(kingInMiddle.legalMoves().size(), 8);
+        assertEquals(8, kingInMiddle.legalMoves().size());
         String expectedMove = "e6";
         assertTrue(kingInMiddle.legalMoves().contains(expectedMove));
 
