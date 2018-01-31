@@ -111,7 +111,7 @@ public class ChessBoard {
                 throw new IllegalMoveException();
 
             if (getPiece(fromPosition) != null){
-                ChessPiece fromPiece = getPiece(toPosition);
+                ChessPiece fromPiece = getPiece(fromPosition);
                 fromPiece.setPosition(toPosition);
             }
         } catch (IllegalPositionException e) {
@@ -124,6 +124,7 @@ public class ChessBoard {
     */
     public String toString(){
         StringBuilder s = new StringBuilder();
+        s.append("abcdefgh\n");
         for (int i = BOARD_SIZE-1; i>=0; i--){
             for (int j = 0; j < BOARD_SIZE; j++) {
                 if (board[i][j] == null)
@@ -131,9 +132,11 @@ public class ChessBoard {
                 else
                     s.append(board[i][j]);
             }
+            s.append(" " + (i+1));
             s.append("\n");
         }
-        return  s.toString();
+        s.append("abcdefgh");
+        return s.toString();
     }
 
 
@@ -203,12 +206,5 @@ public class ChessBoard {
 
     private static boolean checkBadCoordinates(int[] coordinates){
         return coordinates[0] < 0 || coordinates[0] > BOARD_SIZE-1 || coordinates[1] < 0 || coordinates[1] > BOARD_SIZE-1;
-    }
-
-
-    public static void main(String[] args) {
-        ChessBoard board =  new ChessBoard();
-        board.initialize();
-        System.out.println(board);
     }
 }

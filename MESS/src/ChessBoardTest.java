@@ -1,6 +1,7 @@
 import org.junit.*;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
@@ -225,5 +226,24 @@ public class ChessBoardTest {
 
 
 
+    }
+
+    public static void main(String[] args) {
+        ChessBoard board = new ChessBoard();
+        board.initialize();
+        Scanner input = new Scanner(System.in);
+        while (true){
+            System.out.println(board);
+            System.out.print("Position to move");
+            String from = input.nextLine();
+            System.out.print("To position");
+            String to = input.nextLine();
+            try {
+                board.move(from, to);
+            } catch (IllegalMoveException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }
