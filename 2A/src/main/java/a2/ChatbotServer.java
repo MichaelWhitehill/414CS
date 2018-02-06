@@ -47,13 +47,22 @@ public class ChatbotServer {
 	 * Handle interaction with a single client.  See assignment description.
 	 */
 	public void handleOneClient() {
-		// TODO: Your code here.
 		try {
 			Socket s = serversocket.accept();
 			BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			PrintWriter output = new PrintWriter(s.getOutputStream(), true);
-			String inString = input.readLine();
-			output.println(inString + " response");
+			String inString = new String(" ");
+			while (input.ready()){
+			    inString = input.readLine();
+			    if (inString.equals("-1"))
+			        break;
+                try {
+                    chatbot.getResponse(inString);
+                    output.println(inString);
+                } catch (AIException e) {
+                    e.printStackTrace();
+                }
+            }
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
