@@ -1,20 +1,24 @@
 package a2;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Allow the Chatbot to be accessible over the network.  <br />
+ * Allow the Chatbot to be accessible over the network.
  * This class only handles one client at a time.  Multiple instances of ChatbotServer 
  * will be run on different ports with a port-based load balancer to handle multiple clients.
  * 
- * @author <Your Name Here>
+ * @author Michael Whitehill
  */
 public class ChatbotServer {
 	
 	/**
 	 * The instance of the {@link Chatbot}.
 	 */
-	private Chatbot chatbot;
+	private a2.Chatbot chatbot;
 
 	/**
 	 * The instance of the {@link ServerSocket}.
@@ -27,7 +31,7 @@ public class ChatbotServer {
 	 * @param chatbot The chatbot to use.
 	 * @param serversocket The pre-configured ServerSocket to use.
 	 */
-	public ChatbotServer(Chatbot chatbot, ServerSocket serversocket) {
+	public ChatbotServer(a2.Chatbot chatbot, ServerSocket serversocket) {
 		this.chatbot = chatbot;
 		this.serversocket = serversocket;
 	}
@@ -44,5 +48,14 @@ public class ChatbotServer {
 	 */
 	public void handleOneClient() {
 		// TODO: Your code here.
+		try {
+			Socket s = serversocket.accept();
+			BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			PrintWriter output = new PrintWriter(s.getOutputStream(), true);
+			String inString = input.readLine();
+			output.println(inString + " response");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
