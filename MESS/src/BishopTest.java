@@ -91,7 +91,11 @@ public class BishopTest {
         board.initialize();
         String stupidPawnInTheWay = "d2";
         String rookStartingPos = "c1";
-        board.removePiece(stupidPawnInTheWay);
+        try {
+            board.move(stupidPawnInTheWay, "d3");
+        } catch (IllegalMoveException e) {
+            fail();
+        }
         try {
             ChessPiece bishopAsPiece = board.getPiece(rookStartingPos);
             String IntermediatesPos = "f4";
@@ -179,7 +183,11 @@ public class BishopTest {
         }
         assert bishopAsPiece != null;
         assertEquals(0, bishopAsPiece.legalMoves().size());
-        board.removePiece(stupidPawnInTheWay);
+        try {
+            board.move(stupidPawnInTheWay, "d3");
+        } catch (IllegalMoveException e) {
+            fail();
+        }
         assertEquals(5, bishopAsPiece.legalMoves().size());
         String testPos = "e3";
         assertTrue(bishopAsPiece.legalMoves().contains(testPos));

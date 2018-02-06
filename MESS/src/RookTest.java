@@ -58,9 +58,12 @@ public class RookTest{
         ChessPiece rookAsPiece = null;
         try {
             rookAsPiece = board.getPiece(rookStartingPosition);
-            board.removePiece(stupidPawnInTheWay);
-        } catch (IllegalPositionException e) {
-            e.printStackTrace();
+            board.move(stupidPawnInTheWay, "a5");
+            board.move("a5", "a4");
+            board.move("a4","a3");
+            board.move("a3", "b2");
+        } catch (IllegalPositionException | IllegalMoveException e) {
+            fail();
         }
         assert rookAsPiece != null;
         try {
@@ -107,11 +110,12 @@ public class RookTest{
         try {
             ChessPiece rookAsPiece = board.getPiece(rookStartingPosition);
             assertEquals(0, rookAsPiece.legalMoves().size());
-            board.removePiece(stupidPawnInTheWay);
-            assertEquals(6,rookAsPiece.legalMoves().size());
-            assertTrue(rookAsPiece.legalMoves().contains("a2"));
-        } catch (IllegalPositionException e) {
-            e.printStackTrace();
+            board.move(stupidPawnInTheWay, "a5");
+            board.move(rookStartingPosition, "a6");
+            assertEquals(9,rookAsPiece.legalMoves().size());
+            assertTrue(rookAsPiece.legalMoves().contains("a8"));
+        } catch (IllegalPositionException | IllegalMoveException e) {
+            fail();
         }
     }
 }
