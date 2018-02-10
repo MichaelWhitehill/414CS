@@ -1,4 +1,6 @@
 package a2;
+// Michael, Whitehill
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -54,17 +56,18 @@ public class ChatbotServer {
 			String inString = new String(" ");
 			while (input.ready()){
 			    inString = input.readLine();
+				String response = "";
 			    if (inString.equals("-1"))
 			        break;
                 try {
-                    chatbot.getResponse(inString);
-                    output.println(inString);
+                    response = chatbot.getResponse(inString);
                 } catch (AIException e) {
-                    e.printStackTrace();
+                    response = "Got AIException: " + e.getMessage();
                 }
+				output.println(response);
             }
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ignored) {
+
 		}
 	}
 }
